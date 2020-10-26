@@ -80,14 +80,14 @@
     },
     "testpack": {
       "type": "string",
-      "defaultValue": "https://github.com/axelavensia/jmeter-public/raw/master/elasticsearch-jmeter/testpack.zip",
+      "defaultValue": "https://github.com/incognito75326/env-setup/raw/master/testpack.zip",
       "metadata": {
         "description": "The location of the test jmx and run properties. This is extracted to the JMeter master node only, in /opt/jmeter"
       }
     },
     "templateBase": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/axelavensia/jmeter-public/master",
+      "defaultValue": "https://raw.githubusercontent.com/incognito75326/env-setup/master",
       "metadata": {
         "description": "Change this value to your repo name if deploying from a fork"
       }
