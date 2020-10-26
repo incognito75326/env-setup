@@ -187,7 +187,7 @@ install_jmeter()
     wget -O /opt/jmeter/apache-jmeter-5.0/lib/ext/jmeter-plugins-manager-1.3.jar https://jmeter-plugins.org/get/
     
     log "getting test plan"
-    wget -O /opt/jmeter/testplan.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/resources/testplan.jmx
+    wget -O /opt/jmeter/testplan.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/testplan.jmx
     
     log "installing plugins"
     wget -O /opt/jmeter/apache-jmeter-5.0/lib/cmdrunner-2.2.jar http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.2/cmdrunner-2.2.jar
