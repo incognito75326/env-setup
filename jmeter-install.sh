@@ -144,7 +144,7 @@ update_config_sub()
 
     cat /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak > /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties
 	
-	sed -i 's,jmeter-server.log,/opt/jmeter/jmeter-server.log,g' /opt/jmeter/apache-jmeter-5.0/bin/jmeter-server.properties
+	sed -i 's,jmeter-server.log,/opt/jmeter/jmeter-server.log,g' /opt/jmeter/apache-jmeter-5.0/bin/jmeter-server
 
 
     #| sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.0/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" 
