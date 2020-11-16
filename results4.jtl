@@ -1,0 +1,169 @@
+timeStamp;elapsed;label;responseCode;threadName;success;bytes;sentBytes;grpThreads;allThreads;URL;Latency;SampleCount;ErrorCount;Hostname;IdleTime;Connect
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;true;465385;0;1;1;https://www.blocket.se/;0;1;0;jmeter-sub0;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;true;465384;0;1;1;https://www.blocket.se/;0;1;0;jmeter-sub1;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;true;465384;0;1;1;https://www.blocket.se/;0;1;0;jmeter-sub2;0;0
+09:33:13;10441;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1812;0;1;1;null;0;1;1;jmeter-sub0;0;0
+09:33:33;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1820;0;1;1;null;0;1;1;jmeter-sub0;0;0
+09:33:33;1051;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;3844;0;1;1;null;0;1;1;jmeter-sub0;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;true;465385;0;3;3;https://www.blocket.se/;0;1;0;jmeter-sub0;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;true;465386;0;3;3;https://www.blocket.se/;0;1;0;jmeter-sub0;0;0
+09:33:34;10322;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1812;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:33:40;10867;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;1812;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:33:43;10428;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;1812;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:33:55;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1820;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:33:55;1096;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;3844;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:01;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;1820;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:01;1095;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;3844;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:04;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;1820;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:04;1099;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;3844;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:33:56;10377;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1812;0;4;4;null;0;1;1;jmeter-sub0;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.20-jp@gc - Ultimate Thread Group 1-7;true;465386;0;6;6;https://www.blocket.se/;0;1;0;jmeter-sub0;0;0
+09:34:02;10419;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:33:13;10469;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1811;0;1;1;null;0;1;1;jmeter-sub2;0;0
+09:33:33;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1819;0;1;1;null;0;1;1;jmeter-sub2;0;0
+09:33:33;1066;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;3844;0;1;1;null;0;1;1;jmeter-sub2;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;true;465386;0;3;3;https://www.blocket.se/;0;1;0;jmeter-sub2;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;true;465385;0;3;3;https://www.blocket.se/;0;1;0;jmeter-sub2;0;0
+09:33:34;10341;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1812;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:33:40;11003;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;1812;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:33:43;10481;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;1812;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:33:55;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1820;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:33:55;1059;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;3844;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:34:01;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;1820;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:34:01;1058;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;3844;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:34:04;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;1820;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:34:04;1069;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;3844;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:33:56;10432;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1812;0;4;4;null;0;1;1;jmeter-sub2;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.22-jp@gc - Ultimate Thread Group 1-7;true;465385;0;6;6;https://www.blocket.se/;0;1;0;jmeter-sub2;0;0
+09:34:02;10342;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:33:13;10485;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1811;0;1;1;null;0;1;1;jmeter-sub1;0;0
+09:33:33;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1819;0;1;1;null;0;1;1;jmeter-sub1;0;0
+09:33:33;1069;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;3844;0;1;1;null;0;1;1;jmeter-sub1;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;true;465386;0;3;3;https://www.blocket.se/;0;1;0;jmeter-sub1;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;true;465385;0;3;3;https://www.blocket.se/;0;1;0;jmeter-sub1;0;0
+09:33:34;10346;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1812;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:33:40;10994;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;1812;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:33:43;10462;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;1812;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:33:55;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1820;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:33:55;1072;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;3844;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:34:01;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;1820;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:34:01;1062;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;3844;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:34:04;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;1820;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:34:04;1061;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;3844;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:33:56;10394;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1812;0;4;4;null;0;1;1;jmeter-sub1;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.21-jp@gc - Ultimate Thread Group 1-7;true;475374;0;6;6;https://www.blocket.se/;0;1;0;jmeter-sub1;0;0
+09:34:02;10683;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:05;10385;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.22-jp@gc - Ultimate Thread Group 1-6;true;475374;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub2;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.22-jp@gc - Ultimate Thread Group 1-5;true;465385;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub2;0;0
+09:34:17;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.22-jp@gc - Ultimate Thread Group 1-4;true;475373;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub2;0;0
+09:34:17;1106;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:10;12315;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-7;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:23;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:23;1062;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:25;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:25;1066;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:15;11409;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-6;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:17;10909;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-5;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:18;10431;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:18;10729;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-4;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:32;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-7;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:32;1064;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-7;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:24;10371;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:37;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-6;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:27;10440;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:38;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-5;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:37;1095;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-6;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:39;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:39;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-4;false;1820;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:38;1111;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-5;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:39;1078;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:39;1106;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-4;false;3844;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:34;10376;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-7;false;1812;0;7;7;null;0;1;1;jmeter-sub2;0;0
+09:34:45;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;1820;0;6;6;null;0;1;1;jmeter-sub2;0;0
+09:34:45;1050;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-3;false;3844;0;6;6;null;0;1;1;jmeter-sub2;0;0
+09:34:47;0;Click first hit;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;1820;0;5;5;null;0;1;1;jmeter-sub2;0;0
+09:34:47;1046;Click logo (nav to startpage);500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;3844;0;5;5;null;0;1;1;jmeter-sub2;0;0
+09:34:38;10397;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-6;false;1812;0;5;5;null;0;1;1;jmeter-sub2;0;0
+09:34:39;10804;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-5;false;1812;0;4;4;null;0;1;1;jmeter-sub2;0;0
+09:34:40;10363;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-1;false;1812;0;3;3;null;0;1;1;jmeter-sub2;0;0
+09:34:40;10498;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-4;false;1812;0;2;2;null;0;1;1;jmeter-sub2;0;0
+09:34:48;10329;Search;500;10.0.4.22-jp@gc - Ultimate Thread Group 1-2;false;1812;0;1;1;null;0;1;1;jmeter-sub2;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.21-jp@gc - Ultimate Thread Group 1-6;true;465386;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub1;0;0
+09:34:05;10414;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.21-jp@gc - Ultimate Thread Group 1-5;true;465385;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub1;0;0
+09:34:17;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.21-jp@gc - Ultimate Thread Group 1-4;true;465385;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub1;0;0
+09:34:17;1134;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:09;10542;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-7;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:23;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:23;1079;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:26;1;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:15;11043;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-6;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:26;1067;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:16;10918;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-5;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:18;10793;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-4;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:18;10482;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:30;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-7;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:30;1055;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-7;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:25;10313;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:36;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-6;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:27;10367;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:37;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-5;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:36;1080;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-6;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:37;1069;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-5;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:39;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-4;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:39;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:39;1086;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-4;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:39;1049;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:31;10346;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-7;false;1812;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:45;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;1820;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:45;1043;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-3;false;3844;0;7;7;null;0;1;1;jmeter-sub1;0;0
+09:34:47;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;1820;0;6;6;null;0;1;1;jmeter-sub1;0;0
+09:34:37;10370;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-6;false;1812;0;6;6;null;0;1;1;jmeter-sub1;0;0
+09:34:47;1047;Click logo (nav to startpage);500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;3844;0;5;5;null;0;1;1;jmeter-sub1;0;0
+09:34:38;10384;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-5;false;1812;0;5;5;null;0;1;1;jmeter-sub1;0;0
+09:34:40;10362;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-4;false;1812;0;4;4;null;0;1;1;jmeter-sub1;0;0
+09:34:40;10398;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-1;false;1812;0;3;3;null;0;1;1;jmeter-sub1;0;0
+09:34:52;0;Click first hit;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-7;false;1820;0;2;2;null;0;1;1;jmeter-sub1;0;0
+09:34:48;10308;Search;500;10.0.4.21-jp@gc - Ultimate Thread Group 1-2;false;1812;0;1;1;null;0;1;1;jmeter-sub1;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.20-jp@gc - Ultimate Thread Group 1-6;true;567397;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub0;0;0
+09:34:05;10337;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.20-jp@gc - Ultimate Thread Group 1-5;true;577384;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub0;0;0
+09:34:17;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+00:00:00;0;Setup (go to blocket and accept cookies);200;10.0.4.20-jp@gc - Ultimate Thread Group 1-4;true;465385;0;7;7;https://www.blocket.se/;0;1;0;jmeter-sub0;0;0
+09:34:17;1085;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:10;11928;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-7;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:23;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:23;1067;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:14;11039;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-6;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:26;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:16;10818;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-5;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:26;1073;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:17;10648;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-4;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:18;10340;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:32;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-7;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:32;1057;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-7;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:24;10341;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:35;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-6;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:35;1054;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-6;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:37;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-5;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:27;10378;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:38;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-4;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:37;1061;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-5;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:38;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1820;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:38;1066;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-4;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:38;1070;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;3844;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:33;10308;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-7;false;1812;0;7;7;null;0;1;1;jmeter-sub0;0;0
+09:34:45;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;1820;0;6;6;null;0;1;1;jmeter-sub0;0;0
+09:34:45;1045;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-3;false;3844;0;6;6;null;0;1;1;jmeter-sub0;0;0
+09:34:36;10304;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-6;false;1812;0;5;5;null;0;1;1;jmeter-sub0;0;0
+09:34:47;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;1820;0;4;4;null;0;1;1;jmeter-sub0;0;0
+09:34:38;10351;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-5;false;1812;0;4;4;null;0;1;1;jmeter-sub0;0;0
+09:34:47;1104;Click logo (nav to startpage);500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;3844;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:39;10371;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-4;false;1812;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:39;10354;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1812;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:48;10300;Search;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-2;false;1812;0;3;3;null;0;1;1;jmeter-sub0;0;0
+09:34:59;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-4;false;1820;0;2;2;null;0;1;1;jmeter-sub0;0;0
+09:35:00;0;Click first hit;500;10.0.4.20-jp@gc - Ultimate Thread Group 1-1;false;1820;0;1;1;null;0;1;1;jmeter-sub0;0;0
