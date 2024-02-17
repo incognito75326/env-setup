@@ -106,7 +106,7 @@ create_jmeter_startup_script()
 #!/bin/bash
 sudo -u jmeter Xvfb :1 -screen 5 1024x768x8 &
 export DISPLAY=:1.5
-JVM_ARGS="-Xms1024m -Xmx6144m -XX:NewSize=512m -XX:MaxNewSize=6144m" && export JVM_ARGS && sudo -u jmeter /opt/jmeter/apache-jmeter-5.0/bin/jmeter-server -DChrome_Driver=$(which chromedriver) -Djava.rmi.server.hostname=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
+JVM_ARGS="-Xms1024m -Xmx6144m -XX:NewSize=512m -XX:MaxNewSize=6144m" && export JVM_ARGS && sudo -u jmeter /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server -DChrome_Driver=$(which chromedriver) -Djava.rmi.server.hostname=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 EOF
 
    chmod +x /opt/jmeter/start-jmeter-server.sh
@@ -136,18 +136,18 @@ update_config_sub()
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
     export LC_TYPE=en_US.UTF-8
-    wget -O /opt/jmeter/apache-jmeter-5.0/bin/rmi_keystore.jks https://github.com/incognito75326/env-setup/raw/master/Resources/rmi_keystore.jks
-    wget -O /opt/jmeter/apache-jmeter-5.0/bin/user.properties https://github.com/incognito75326/env-setup/raw/master/Resources/user.properties
-    mv /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak
-    #cat /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=true|" > /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties 
-    #cat /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" | sed "s|#client.rmi.localport=0|client.rmi.localport=4440|" | sed "s|#server.rmi.localport=4000|server.rmi.localport=4441|" | sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.0/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" > /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties
+    wget -O /opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks https://github.com/incognito75326/env-setup/raw/master/Resources/rmi_keystore.jks
+    wget -O /opt/jmeter/apache-jmeter-5.6.3/bin/user.properties https://github.com/incognito75326/env-setup/raw/master/Resources/user.properties
+    mv /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak
+    #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=true|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
+    #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" | sed "s|#client.rmi.localport=0|client.rmi.localport=4440|" | sed "s|#server.rmi.localport=4000|server.rmi.localport=4441|" | sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties
 
-    cat /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak > /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties
+    cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties
 	
-	sed -i 's,jmeter-server.log,/opt/jmeter/jmeter-server.log,g' /opt/jmeter/apache-jmeter-5.0/bin/jmeter-server
+	sed -i 's,jmeter-server.log,/opt/jmeter/jmeter-server.log,g' /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server
 
 
-    #| sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.0/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" 
+    #| sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" 
     
 
 }
@@ -158,17 +158,17 @@ update_config_boss()
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
     export LC_TYPE=en_US.UTF-8
-    wget -O /opt/jmeter/apache-jmeter-5.0/bin/rmi_keystore.jks https://github.com/incognito75326/env-setup/raw/master/Resources/rmi_keystore.jks
-    wget -O /opt/jmeter/apache-jmeter-5.0/bin/user.properties https://github.com/incognito75326/env-setup/raw/master/Resources/user.properties
-    mv /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak
-    #cat /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" > /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties 
+    wget -O /opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks https://github.com/incognito75326/env-setup/raw/master/Resources/rmi_keystore.jks
+    wget -O /opt/jmeter/apache-jmeter-5.6.3/bin/user.properties https://github.com/incognito75326/env-setup/raw/master/Resources/user.properties
+    mv /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak
+    #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
 
-    #cat /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak | sed "s|#client.rmi.localport=0|client.rmi.localport=4440|" | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" | sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.0/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" > /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties 
+    #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|#client.rmi.localport=0|client.rmi.localport=4440|" | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" | sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
     
-    cat /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties.bak | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" > /opt/jmeter/apache-jmeter-5.0/bin/jmeter.properties 
+    cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
 
 
-    #| sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.0/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" 
+    #| sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" 
     
     
     
@@ -180,25 +180,25 @@ install_jmeter()
     apt-get -y install unzip 
     
     mkdir -p /opt/jmeter
-    wget -O jmeter.zip https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.0.zip
+    wget -O jmeter.zip https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.zip
     
     log "unzipping jmeter"
     unzip -q jmeter.zip -d /opt/jmeter/
     
     log "installing plugins manager"
-    wget -O /opt/jmeter/apache-jmeter-5.0/lib/ext/jmeter-plugins-manager-1.3.jar https://jmeter-plugins.org/get/
+    wget -O /opt/jmeter/apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager-1.3.jar https://jmeter-plugins.org/get/
     
     log "getting test plan"
     wget -O /opt/jmeter/testplan.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/testplan.jmx
     
     log "installing plugins"
-    wget -O /opt/jmeter/apache-jmeter-5.0/lib/cmdrunner-2.3.jar http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar
-    java -cp /opt/jmeter/apache-jmeter-5.0/lib/ext/jmeter-plugins-manager-1.3.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
-    /opt/jmeter/apache-jmeter-5.0/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/testplan.jmx
+    wget -O /opt/jmeter/apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar
+    java -cp /opt/jmeter/apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager-1.3.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+    /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/testplan.jmx
 
      
-    chmod u+x /opt/jmeter/apache-jmeter-5.0/bin/jmeter-server
-    chmod u+x /opt/jmeter/apache-jmeter-5.0/bin/jmeter
+    chmod u+x /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server
+    chmod u+x /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter
     
     
     if [ ${IS_MASTER} -ne 1 ]; 
