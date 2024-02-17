@@ -24,11 +24,12 @@
     },
     "subNodeCount": {
       "type": "int",
-      "defaultValue": 2,
+      "defaultValue": 1,
       "allowedValues": [
         80,
         50,
         25,
+        1,
         2,
         3,
         4,
@@ -49,6 +50,8 @@
       "type": "string",
       "defaultValue": "Standard_D5_v2",
       "allowedValues": [
+        "Standard_B1s",
+        "Standard_D1_v2",
         "Standard_D2_v2",
         "Standard_D3_v2",
         "Standard_D4_v2",
@@ -67,6 +70,7 @@
       "type": "string",
       "defaultValue": "Standard_D5_v2",
       "allowedValues": [
+        "Standard_B1s",
         "Standard_D2_v2",
         "Standard_D3_v2",
         "Standard_D4_v2",
