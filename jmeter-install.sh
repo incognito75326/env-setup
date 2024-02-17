@@ -194,7 +194,7 @@ install_jmeter()
     log "installing plugins"
     wget -O /opt/jmeter/apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar
     java -cp /opt/jmeter/apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager-1.3.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
-    /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/testplan.jmx
+    sudo /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/testplan.jmx
 
      
     chmod u+x /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server
