@@ -130,7 +130,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
 import java.time.Duration
 
-try{
+
 var maxWait = 120;
 var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait))
 
@@ -146,10 +146,8 @@ WDS.browser.switchTo().window(handles[1])
 var app = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#wrapper &gt; div &gt; div.menu-addition &gt; div &gt; div &gt; div &gt; div.menu-addition__title &gt; div&apos;)))
 
 WDS.sampleResult.sampleEnd()
-} finally {
-	WDS.log.info(&quot;Closing browser&quot;)
-	WDS.browser.quit()
-}
+WDS.log.info(&quot;Closing browser&quot;)
+
 
 </stringProp>
           <stringProp name="WebDriverSampler.parameters"></stringProp>
