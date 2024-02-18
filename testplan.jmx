@@ -402,7 +402,7 @@ WDS.sampleResult.sampleEnd()
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="BeanShell Listener">
+        <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="BeanShell Listener" enabled="false">
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
