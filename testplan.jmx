@@ -433,11 +433,11 @@ WDS.sampleResult.sampleEnd()
       </hashTree>
       <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="bzm - Concurrency Thread Group">
         <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
-        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
-        <stringProp name="TargetLevel">3</stringProp>
-        <stringProp name="RampUp">0</stringProp>
-        <stringProp name="Steps">1</stringProp>
-        <stringProp name="Hold">160</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <stringProp name="TargetLevel">4</stringProp>
+        <stringProp name="RampUp">45</stringProp>
+        <stringProp name="Steps">2</stringProp>
+        <stringProp name="Hold">45</stringProp>
         <stringProp name="LogFilename"></stringProp>
         <stringProp name="Iterations"></stringProp>
         <stringProp name="Unit">S</stringProp>
@@ -447,14 +447,15 @@ WDS.sampleResult.sampleEnd()
           <collectionProp name="Arguments.arguments">
             <elementProp name="VALUES" elementType="Argument">
               <stringProp name="Argument.name">VALUES</stringProp>
-              <stringProp name="Argument.value">skola,digital,utbildning,konsult,introduktion,kurs,måltider,information,stockholm,externa,privata,kommunala,smart,stad,förvaltning</stringProp>
-              <stringProp name="Argument.desc"></stringProp>
+              <stringProp name="Argument.value">skola,digital,utbildning,konsult,introduktion,kurs,måltider,information,stockholm,externa,privata,kommunala,smart,stad,förvaltning,alla,stad,system,cannabis,till,bostad,från,för,vårdgivare,och,syn,komvux,skötsel,dummy</stringProp>
+              <stringProp name="Argument.desc">~30st</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="COURSES" elementType="Argument">
               <stringProp name="Argument.name">COURSES</stringProp>
               <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/course/view.php?id=32,https://utbildning-extern.stockholm.se/course/view.php?id=269</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">3st (small, medium, large)</stringProp>
             </elementProp>
           </collectionProp>
         </Arguments>
@@ -530,14 +531,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
 import java.time.Duration
 
-var maxWait = 90;
+var maxWait = 60;
 var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait))
 
-//Start course
+//Start course (measure time from start of navigation to when menu item becomes visible)
 WDS.sampleResult.sampleStart()
 WDS.browser.get(&apos;https://utbildning-extern.stockholm.se/&apos;)
 var linkToCatalog = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#totaramenuitem22 &gt; a &gt; div.totaraNav_prim--list_item_label&apos;)))
-//TODO: WAIT FOR readyState = complete and ajax
+//TODO: WAIT FOR readyState = complete and ajax?
 WDS.sampleResult.sampleEnd()
 
 </stringProp>
@@ -551,30 +552,31 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
 import java.time.Duration
 
-var maxTotalWait = 90
-var maxWait = 60;
-var startTime = new Date().getTime(); 
-var link = WDS.browser.findElement(By.cssSelector(&apos;#totaramenuitem22 &gt; a &gt; div.totaraNav_prim--list_item_label&apos;))
+var maxTotalWait = 120
 
-WDS.sampleResult.sampleStart()
-//Click catalog link in page header
+//This element is already visible, as confirmed in previous test step
+var link = WDS.browser.findElement(By.cssSelector(&apos;#totaramenuitem22 &gt; a &gt; div.totaraNav_prim--list_item_label&apos;));
+var startTime = new Date().getTime();
+
+//Measure time from clicking the catalog link until it is interactable
+WDS.sampleResult.sampleStart() 
 link.click();
 
-
-//Wait for catalog to load (readyState = complete and no loading indicator visible)
+//Wait for readyState = complete...
 var complete = false;
 var timeLeftInMillis = maxTotalWait * 1000 - (new Date().getTime() - startTime);
 while(!complete &amp; (maxTotalWait * 1000 - (new Date().getTime() - startTime))&gt;0){
 	complete = WDS.browser.executeScript(&quot;return document.readyState == &apos;complete&apos;&quot;)
-	WDS.log.info(&quot;Page load completed for catalog: &quot; + complete)
+	WDS.log.info(&quot;Page load completed for catalog: &quot; + complete);
 	java.lang.Thread.sleep(1000);
 }
 
+//...Then wait for various ajax calls. While those are performing, a loading indicator displayed, and once that is no longer displayed, the page is interactable
 timeLeftInMillis = maxTotalWait * 1000 - (new Date().getTime() - startTime);
 WDS.log.info(&quot;Will wait for catalog to complete (millis): &quot; + timeLeftInMillis);
 var waitDuration = java.time.Duration.ofMillis(timeLeftInMillis);
 var wait = new WebDriverWait(WDS.browser, waitDuration);
-wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(&quot;#region-main &gt; div &gt; main &gt; div &gt; div.tw-catalog__results &gt; div.tw-catalog__overlay_text&quot;)))
+wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(&quot;#region-main &gt; div &gt; main &gt; div &gt; div.tw-catalog__results &gt; div.tw-catalog__overlay_text&quot;)));
 WDS.sampleResult.sampleEnd()
 
 
@@ -589,32 +591,40 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
 import java.time.Duration
 
-var maxTotalWait = 90
-var maxWait = 60;
-var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait))
-var startTime = new Date().getTime(); 
+var maxTotalWait = 90;
+var shortWait = 30;
+
+var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(shortWait));
+
 //WDS.log.info(&quot;currentValue: &quot; + props.get(&quot;currentValue&quot;));
 
-//Make a search
-WDS.sampleResult.sampleStart()
-var searchField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(&apos;catalog_fts_input&apos;)))
+//Measure time from user interaction in search bar until search esults are displayed
+//First input search term and click search button...
+var startTime = new Date().getTime(); 
+WDS.sampleResult.sampleStart();
+var searchField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(&apos;catalog_fts_input&apos;)));
 var query = WDS.vars.get(&apos;currentValue&apos;);
 WDS.log.info(&quot;Will search for: &quot; + query);
-searchField.sendKeys(query)
+searchField.sendKeys(query);
 var searchButton = WDS.browser.findElement(By.cssSelector(&apos;.tw-selectSearchText__btn&apos;))
 searchButton.click();
 
-//Wait for results to load
+//...then wait for results to be displayed, and the overlay/loading indicator to disappear
 var complete = false;
 wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;.tw-catalog__overlay_text&apos;)))
 WDS.log.info(&quot;Found overlay in search results&quot;);
 while(!complete &amp; new Date().getTime() &lt; startTime + maxTotalWait*1000){
 	complete = WDS.browser.executeScript(&quot;return document.readyState == &apos;complete&apos;&quot;)
 	WDS.log.info(&quot;Page load completed for search results: &quot; + complete)
-	java.lang.Thread.sleep(1000);
+	java.lang.Thread.sleep(500);
 }
+
+var timeLeftInMillis = maxTotalWait * 1000 - (new Date().getTime() - startTime);
+WDS.log.info(&quot;Time left in millis (waiting for search results: &quot; + timeLeftInMillis);
+wait = new WebDriverWait(WDS.browser, Duration.ofMillis(timeLeftInMillis));
 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(&quot;.tw-catalog__overlay_text&quot;)))
 WDS.log.info(&quot;Overlay no longer visible in search results&quot;);
+
 
 WDS.sampleResult.sampleEnd()
 
@@ -650,13 +660,14 @@ import java.time.Duration
 
 var maxWait = 90;
 var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait))
-
-WDS.sampleResult.sampleStart()
 var course = WDS.vars.get(&quot;course&quot;)
 WDS.log.info(&quot;Course page to visit: &quot; + course)
-WDS.browser.get(course)
-var startButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#scormviewform &gt; input.btn.btn-primary&apos;)))
-WDS.sampleResult.sampleEnd()
+
+//Measure from navigation to course page url until start course button is interactable
+WDS.sampleResult.sampleStart();
+WDS.browser.get(course);
+var startButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#scormviewform &gt; input.btn.btn-primary&apos;)));
+WDS.sampleResult.sampleEnd();
 
 </stringProp>
           <stringProp name="WebDriverSampler.parameters"></stringProp>
@@ -691,7 +702,7 @@ import java.time.Duration
 var maxTotalWait = 120//Seconds
 
 
-
+//Measure from clicking the start course button until scorm (new tab) is fully downloaded and interactable
 WDS.sampleResult.sampleStart()
 var startTime = new Date().getTime();
 while(true){
@@ -702,12 +713,13 @@ while(true){
 	WDS.log.info(&quot;Time left (start button): &quot; + timeLeftInMillis);
 	var waitDuration = java.time.Duration.ofMillis(timeLeftInMillis);
 	var wait = new WebDriverWait(WDS.browser, waitDuration);
-	
+
+	//Already confirmed to be visible from previous test step, in practice no wait is made
 	var button = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#scormviewform &gt; input.btn.btn-primary&apos;)))
 	button.click()
 	java.lang.Thread.sleep(200);
 
-	//Switch tab
+	//Switch to scorm tab
 	var handles = WDS.browser.getWindowHandles()
 	WDS.browser.switchTo().window(handles[1])
 	//Calculate time left
@@ -724,7 +736,7 @@ while(true){
 	    WDS.log.info(&quot;Scorm not finalized. Time left until fail: &quot; + timeLeftInMillis); 
 	}
 }
-WDS.sampleResult.sampleEnd()
+WDS.sampleResult.sampleEnd();
 
 
 </stringProp>
