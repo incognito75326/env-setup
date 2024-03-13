@@ -190,14 +190,14 @@ install_jmeter()
     
     log "getting test plan"
     wget -O /opt/jmeter/testplan.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/testplan.jmx
-    wget -O /opt/jmeter/http.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/http.jmx || true
+    wget -O /opt/jmeter/google-dev-test.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/google-dev-test.jmx || true
 
     
     log "installing plugins"
     wget -O /opt/jmeter/apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar
     java -cp /opt/jmeter/apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager-1.3.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
     sudo /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/testplan.jmx
-    sudo /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/http.jmx
+    sudo /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/google-dev-test.jmx
 
      
     chmod u+x /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server
