@@ -118,6 +118,7 @@ WDS.sampleResult.sampleStart()
 WDS.browser.get(&apos;https://google.se&apos;)
 //WDS.browser.findElement(By.cssSelector(&apos;#L2AGLb &gt; div&apos;));
 WDS.browser.findElement(By.cssSelector(&apos;#L2AGLb&apos;)).click();
+WDS.sleep(1000);
 var searchBox = WDS.browser.findElement(By.name(&apos;q&apos;)); // Find the search box
 searchBox.sendKeys(&apos;Testing JMeter&apos;); // Enter the random string
 searchBox.submit(); // Submit the search form
