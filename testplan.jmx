@@ -434,16 +434,39 @@ WDS.sampleResult.sampleEnd()
       <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="bzm - Concurrency Thread Group">
         <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
-        <stringProp name="TargetLevel">4</stringProp>
-        <stringProp name="RampUp">45</stringProp>
-        <stringProp name="Steps">2</stringProp>
+        <stringProp name="TargetLevel">6</stringProp>
+        <stringProp name="RampUp">60</stringProp>
+        <stringProp name="Steps">3</stringProp>
         <stringProp name="Hold">45</stringProp>
         <stringProp name="LogFilename"></stringProp>
         <stringProp name="Iterations"></stringProp>
         <stringProp name="Unit">S</stringProp>
+        <stringProp name="TestPlan.comments">Real settings should be 3000, an hour, 30ish steps hold target 60min</stringProp>
       </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
       <hashTree>
-        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If controller (stop test when throghput reached target)">
+          <stringProp name="IfController.condition">${__jexl3(${sampleCounter} &gt; 30,)}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
+        <hashTree>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action">
+            <intProp name="ActionProcessor.action">0</intProp>
+            <intProp name="ActionProcessor.target">2</intProp>
+            <stringProp name="ActionProcessor.duration">0</stringProp>
+          </TestAction>
+          <hashTree/>
+        </hashTree>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="randNum (1-100)">
+          <stringProp name="maximumValue">100</stringProp>
+          <stringProp name="minimumValue">1</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <boolProp name="perThread">true</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">randNum</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="sampleCounter (iterations)">
           <stringProp name="CounterConfig.start">0</stringProp>
           <stringProp name="CounterConfig.end"></stringProp>
           <stringProp name="CounterConfig.incr">1</stringProp>
@@ -510,7 +533,7 @@ log.info(&quot;currentValue: &quot; + vars.get(&quot;currentValue&quot;));
           <stringProp name="WebDriverConfig.custom_capabilites"></stringProp>
         </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
         <hashTree/>
-        <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="LOCAL Chrome Driver Config" enabled="true">
+        <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="LOCAL Chrome Driver Config">
           <boolProp name="WebDriverConfig.acceptinsecurecerts">true</boolProp>
           <boolProp name="WebDriverConfig.reset_per_iteration">true</boolProp>
           <stringProp name="WebDriverConfig.driver_path">/Users/axelwadensten/Downloads/chromedriver-mac-x64/chromedriver</stringProp>
@@ -534,7 +557,7 @@ log.info(&quot;currentValue: &quot; + vars.get(&quot;currentValue&quot;));
           <stringProp name="WebDriverConfig.custom_capabilites"></stringProp>
         </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
         <hashTree/>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to start page" enabled="true">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to start page">
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
@@ -542,6 +565,8 @@ import java.time.Duration
 
 var maxWait = 60;
 var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait));
+var random = WDS.vars.get(&apos;randNum&apos;);
+WDS.log.info(&quot;randnum: &quot; + random + &quot; Thread Name: &quot; + Thread.currentThread().getName());
 
 //Start course (measure time from start of navigation to when menu item becomes visible)
 WDS.sampleResult.sampleStart();
@@ -683,7 +708,7 @@ WDS.sampleResult.sampleEnd();
           <stringProp name="WebDriverSampler.language">groovy</stringProp>
         </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
         <hashTree>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
             <stringProp name="scriptLanguage">groovy</stringProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
@@ -701,8 +726,14 @@ log.info(&quot;course: &quot; + vars.get(&quot;course&quot;));
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Start course/Wait for SCORM - ${course}">
-          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller (only fraction downloads scorm)">
+          <stringProp name="IfController.condition">${__jexl3(${randNum} &lt;= 50,)}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Start course/Wait for SCORM - ${course}">
+            <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
 import java.time.Duration
@@ -749,19 +780,28 @@ WDS.sampleResult.sampleEnd();
 
 
 </stringProp>
-          <stringProp name="WebDriverSampler.parameters"></stringProp>
-          <stringProp name="WebDriverSampler.language">groovy</stringProp>
-        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
-        <hashTree/>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
-          <stringProp name="IfController.condition">${sampleCounter} &gt; 12</stringProp>
+            <stringProp name="WebDriverSampler.parameters"></stringProp>
+            <stringProp name="WebDriverSampler.language">groovy</stringProp>
+          </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+          <hashTree/>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">log.info(&quot;randNum: &quot; + vars.get(&quot;randNum&quot;));</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If controller (stop test when throghput reached target)">
+          <stringProp name="IfController.condition">${__jexl3(${sampleCounter} &gt; 30,)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
-          <boolProp name="IfController.useExpression">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
           <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action">
             <intProp name="ActionProcessor.action">0</intProp>
-            <intProp name="ActionProcessor.target">2</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
             <stringProp name="ActionProcessor.duration">0</stringProp>
           </TestAction>
           <hashTree/>
