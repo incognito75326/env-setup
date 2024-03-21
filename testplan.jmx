@@ -8,13 +8,13 @@
       </elementProp>
     </TestPlan>
     <hashTree>
-      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Normal load, navigating, searching and scorm" enabled="false">
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Normal load, navigating, searching and scorm">
         <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
-        <stringProp name="TargetLevel">5</stringProp>
-        <stringProp name="RampUp">180</stringProp>
+        <stringProp name="TargetLevel">6</stringProp>
+        <stringProp name="RampUp">10</stringProp>
         <stringProp name="Steps">5</stringProp>
-        <stringProp name="Hold">180</stringProp>
+        <stringProp name="Hold">60</stringProp>
         <stringProp name="LogFilename"></stringProp>
         <stringProp name="Iterations"></stringProp>
         <stringProp name="Unit">S</stringProp>
@@ -31,13 +31,13 @@
             </elementProp>
             <elementProp name="COURSES" elementType="Argument">
               <stringProp name="Argument.name">COURSES</stringProp>
-              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/course/view.php?id=32,https://utbildning-extern.stockholm.se/course/view.php?id=269</stringProp>
+              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/course/view.php?id=278,https://utbildning-extern.stockholm.se/course/view.php?id=279,https://utbildning-extern.stockholm.se/course/view.php?id=14</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">3st (small, medium, large)</stringProp>
             </elementProp>
             <elementProp name="SELECTORS" elementType="Argument">
               <stringProp name="Argument.name">SELECTORS</stringProp>
-              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.value">&apos;#module-180 &gt; div &gt; div &gt; div:nth-child(2) &gt; div &gt; a &gt; span.instancename&apos;,&apos;#module-181 &gt; div &gt; div &gt; div:nth-child(2) &gt; div &gt; a &gt; span.instancename&apos;,&apos;#module-119 &gt; div &gt; div &gt; div:nth-child(2) &gt; div &gt; a &gt; span.instancename&apos;</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -99,8 +99,6 @@ import java.time.Duration
 
 var maxWait = 60;
 var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait));
-var random = WDS.vars.get(&apos;randNum&apos;);
-WDS.log.info(&quot;randnum: &quot; + random + &quot; Thread Name: &quot; + Thread.currentThread().getName());
 
 //Start course (measure time from start of navigation to when menu item becomes visible)
 WDS.sampleResult.sampleStart();
@@ -234,7 +232,7 @@ WDS.log.info(&quot;Course page to visit: &quot; + course);
 //Measure from navigation to course page url until start course button is interactable
 WDS.sampleResult.sampleStart();
 WDS.browser.get(course);
-var startButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#scormviewform &gt; input.btn.btn-primary&apos;)));
+var startButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;.activityinstance &gt; a&apos;)));
 WDS.sampleResult.sampleEnd();
 
 </stringProp>
@@ -249,7 +247,6 @@ WDS.sampleResult.sampleEnd();
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">// Split the comma-separated values into an array
 def values = vars.get(&quot;COURSES&quot;).split(&quot;,&quot;);
-def selectors = vars.get(&quot;SELECTORS&quot;).split(&quot;,&quot;);
 // Get the unique thread number
 def threadNum = ctx.getThreadNum();
 // Use thread number to calculate index. Ensure it wraps around the values array length
@@ -257,21 +254,41 @@ def index = threadNum % values.length;
 // Set the selected value to a variable, ensuring index is treated as integer
 vars.put(&quot;course&quot;, values[(int)index]);
 log.info(&quot;course: &quot; + vars.get(&quot;course&quot;));
-
-vars.put(&quot;selector&quot;, selectors[(int)index]);
-log.info(&quot;selector: &quot; + vars.get(&quot;selector&quot;));
 </stringProp>
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Start course/Wait for SCORM - ${course}" enabled="true">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Second course page - ${course}">
+          <stringProp name="TestPlan.comments">https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=178</stringProp>
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
 import java.time.Duration
 
 
-var maxTotalWait = 120//Seconds
+var maxWait = 120;
+var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait));
+//Click button to go to course page (sample from clicking until start course button visible, ie time between clicking and next page interactable)
+WDS.sampleResult.sampleStart();
+var button = WDS.browser.findElement(By.cssSelector(&apos;.activityinstance &gt; a&apos;));
+button.click();
+wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#scormviewform &gt; input.btn.btn-primary&apos;)));
+WDS.sampleResult.sampleEnd();
+
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">groovy</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Start course/Wait for SCORM - ${course}">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import org.openqa.selenium.By
+import java.time.Duration
+
+
+var maxTotalWait = 120;//Seconds
 
 
 //Measure from clicking the start course button until scorm (new tab) is fully downloaded and interactable
@@ -301,7 +318,7 @@ while(true){
 	WDS.log.info(&quot;Time left (scorm download): &quot; + timeLeftInMillis);
 	try {
 	    // Attempt to find the element within the specified time
-	    wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#wrapper &gt; div &gt; div.menu-addition &gt; div &gt; div &gt; div &gt; div.menu-addition__title &gt; div&apos;)));
+	    wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#wrapper &gt; div &gt; div&apos;)));
 	    break; // Element found
 	} catch (Exception e) {
 	    timeLeftInMillis = maxTotalWait * 1000 - (new Date().getTime() - startTime);
@@ -350,7 +367,7 @@ WDS.sampleResult.sampleEnd();
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/Users/axelwadensten/Desktop/actualsettings-directnav-1node.jtl</stringProp>
+          <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="false">
@@ -387,7 +404,7 @@ WDS.sampleResult.sampleEnd();
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/Users/axelwadensten/Desktop/actualsettings-directnav-1node.jtl</stringProp>
+          <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
         <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="BeanShell Listener" enabled="false">
@@ -431,7 +448,7 @@ WDS.sampleResult.sampleEnd();
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/Users/axelwadensten/Desktop/actualsettings-directnav-1node.jtl</stringProp>
+          <stringProp name="filename"></stringProp>
           <longProp name="interval_grouping">500</longProp>
           <boolProp name="graph_aggregated">false</boolProp>
           <stringProp name="include_sample_labels"></stringProp>
@@ -476,7 +493,7 @@ WDS.sampleResult.sampleEnd();
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/Users/axelwadensten/Desktop/actualsettings-directnav-1node.jtl</stringProp>
+          <stringProp name="filename"></stringProp>
           <longProp name="interval_grouping">500</longProp>
           <boolProp name="graph_aggregated">false</boolProp>
           <stringProp name="include_sample_labels"></stringProp>
