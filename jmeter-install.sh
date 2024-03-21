@@ -81,15 +81,21 @@ done
 
 expand_ip_range() {
     IFS='-' read -a HOST_IPS <<< "$1"
-    declare -a MY_IPS=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
+    BASE_IP=$(echo ${HOST_IPS[0]} | sed -E 's/([0-9]+\.[0-9]+\.[0-9]+\.)[0-9]+/\1/')
+    START=$(echo ${HOST_IPS[0]} | grep -oE '[0-9]+$')
+    END=${HOST_IPS[1]}
+
+    declare -a MY_IPS=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
     declare -a EXPAND_STATICIP_RANGE_RESULTS=()
-    for (( n=0 ; n<("${HOST_IPS[1]}"+0) ; n++))
+
+    for (( n=START; n<=END; n++ ))
     do
-        HOST="${HOST_IPS[0]}${n}"
-        if ! [[ "${MY_IPS[@]}" =~ "${HOST}" ]]; then
+        HOST="${BASE_IP}${n}"
+        if ! [[ " ${MY_IPS[@]} " =~ " ${HOST} " ]]; then
             EXPAND_STATICIP_RANGE_RESULTS+=($HOST)
         fi
     done
+
     echo "${EXPAND_STATICIP_RANGE_RESULTS[@]}"
 }
 
