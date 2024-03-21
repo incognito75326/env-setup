@@ -99,6 +99,7 @@ expand_ip_range() {
     echo "${EXPAND_STATICIP_RANGE_RESULTS[@]}"
 }
 
+
 install_java()
 {
     log "Installing Java"
@@ -296,7 +297,7 @@ install_phantomjs()
 
 if [ ${REMOTE_RANGE} ];
 then
-    S=$(expand_ip_range "$REMOTE_RANGE")
+    S=$(expand_ip_range "192.168.1.100-255")
     REMOTE_HOSTS="${S// /,}"
     log "using remote hosts ${REMOTE_HOSTS}"
 fi
