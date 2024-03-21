@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # The MIT License (MIT)
 #
 # Copyright (c) 2015 Microsoft Azure
@@ -24,7 +22,6 @@
 #
 # Hans Krijger (MSFT)
 #
-
 help()
 {
     echo "This script installs JMeter on Ubuntu"
@@ -34,28 +31,23 @@ help()
     echo "  -r <hosts>      set remote hosts (master only)"
     echo "  -t <testpack>   location of the test pack to download and unzip (master only)"
 }
-
 log()
 {
     echo "$1"
 }
-
 error()
 {
     echo "$1" >&2
     exit 1
 }
-
 if [ "${UID}" -ne 0 ];
 then
     error "Script executed without root permissions"
 fi
-
 # script parameters
 IS_MASTER=0
 REMOTE_HOSTS=""
 CLUSTER_NAME="elasticsearch"
-
 while getopts :hmr:j:t: optname; do
   log "Option $optname set with value ${OPTARG}"
   case $optname in
@@ -78,35 +70,25 @@ while getopts :hmr:j:t: optname; do
       ;;
   esac
 done
-
 expand_ip_range() {
     IFS='-' read -a HOST_IPS <<< "$1"
-    BASE_IP=$(echo ${HOST_IPS[0]} | sed -E 's/([0-9]+\.[0-9]+\.[0-9]+\.)[0-9]+/\1/')
-    START=$(echo ${HOST_IPS[0]} | grep -oE '[0-9]+$')
-    END=${HOST_IPS[1]}
-
-    declare -a MY_IPS=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+    declare -a MY_IPS=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
     declare -a EXPAND_STATICIP_RANGE_RESULTS=()
-
-    for (( n=START; n<=END; n++ ))
+    for (( n=0 ; n<("${HOST_IPS[1]}"+0) ; n++))
     do
-        HOST="${BASE_IP}${n}"
-        if ! [[ " ${MY_IPS[@]} " =~ " ${HOST} " ]]; then
+        HOST="${HOST_IPS[0]}${n}"
+        if ! [[ "${MY_IPS[@]}" =~ "${HOST}" ]]; then
             EXPAND_STATICIP_RANGE_RESULTS+=($HOST)
         fi
     done
-
     echo "${EXPAND_STATICIP_RANGE_RESULTS[@]}"
 }
-
-
 install_java()
 {
     log "Installing Java"
     sudo apt update --assume-yes
     sudo apt install default-jre --assume-yes
 }
-
 create_jmeter_startup_script()
 {
     cat << EOF > /opt/jmeter/start-jmeter-server.sh
@@ -115,28 +97,22 @@ sudo -u jmeter Xvfb :1 -screen 5 1024x768x8 &
 export DISPLAY=:1.5
 JVM_ARGS="-Xms1024m -Xmx6144m -XX:NewSize=512m -XX:MaxNewSize=6144m" && export JVM_ARGS && sudo -u jmeter /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server -DChrome_Driver=$(which chromedriver) -Djava.rmi.server.hostname=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 EOF
-
    chmod +x /opt/jmeter/start-jmeter-server.sh
    sudo systemctl start jmeter
 }
-
 setup_jmeter_service()
 {   
     cat << EOF > /etc/systemd/system/jmeter.service
 [Unit]
 Description=JMeter Service
 After=network-online.target
-
 [Service]
 ExecStart=/opt/jmeter/start-jmeter-server.sh
-
 [Install]
 WantedBy=multi-user.target
 EOF
-
     sudo systemctl enable jmeter
 }
-
 update_config_sub()
 {
     export LANGUAGE=en_US.UTF-8
@@ -148,17 +124,12 @@ update_config_sub()
     mv /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak
     #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=true|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
     #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" | sed "s|#client.rmi.localport=0|client.rmi.localport=4440|" | sed "s|#server.rmi.localport=4000|server.rmi.localport=4441|" | sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties
-
     cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties
-	
-	sed -i 's,jmeter-server.log,/opt/jmeter/jmeter-server.log,g' /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server
-
-
+    
+    sed -i 's,jmeter-server.log,/opt/jmeter/jmeter-server.log,g' /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server
     #| sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" 
     
-
 }
-
 update_config_boss()
 {
     export LANGUAGE=en_US.UTF-8
@@ -169,18 +140,14 @@ update_config_boss()
     wget -O /opt/jmeter/apache-jmeter-5.6.3/bin/user.properties https://github.com/incognito75326/env-setup/raw/master/Resources/user.properties
     mv /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak
     #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
-
     #cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|#client.rmi.localport=0|client.rmi.localport=4440|" | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" | sed "s|#server.rmi.ssl.disable=false|server.rmi.ssl.disable=false|" | sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
     
     cat /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties.bak | sed "s|remote_hosts=127.0.0.1|remote_hosts=${REMOTE_HOSTS}|" > /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter.properties 
-
-
     #| sed "s|#server.rmi.ssl.keystore.type=JKS|server.rmi.ssl.keystore.type=JKS|" | sed "s|#server.rmi.ssl.keystore.file=rmi_keystore.jks|server.rmi.ssl.keystore.file=/opt/jmeter/apache-jmeter-5.6.3/bin/rmi_keystore.jks|" | sed "s|#server.rmi.ssl.keystore.password=changeit|server.rmi.ssl.keystore.password=changeit|" | sed "s|#server.rmi.ssl.keystore.alias=rmi|server.rmi.ssl.keystore.alias=rmi|" 
     
     
     
 }
-
 install_jmeter()
 {
     log "Installing JMeter"
@@ -198,14 +165,12 @@ install_jmeter()
     log "getting test plan"
     wget -O /opt/jmeter/testplan.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/testplan.jmx
     wget -O /opt/jmeter/google-dev-test.jmx https://raw.githubusercontent.com/incognito75326/env-setup/master/google-dev-test.jmx || true
-
     
     log "installing plugins"
     wget -O /opt/jmeter/apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar
     java -cp /opt/jmeter/apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager-1.3.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
     sudo /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/testplan.jmx
     sudo /opt/jmeter/apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh install-for-jmx /opt/jmeter/google-dev-test.jmx
-
      
     chmod u+x /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter-server
     chmod u+x /opt/jmeter/apache-jmeter-5.6.3/bin/jmeter
@@ -246,7 +211,7 @@ install_chromedriver()
     log "Installing chromedriver"
     #wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
     #sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-    
+
     sudo apt-get -y update  > /dev/null
     sudo apt-get -qy install wget default-jre-headless telnet iputils-ping unzip libnss3  #chromium-chromedriver > /dev/null
     sudo wget -q https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.58/linux64/chromedriver-linux64.zip #TODO: Add this to repo to avoid future version mismatches
@@ -262,13 +227,13 @@ install_chromedriver()
     #dpkg -i chromium-browser*.deb
     
     sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb #TODO: Add this to repo to avoid future version mismatches
-	sudo dpkg -i google-chrome-stable_current_amd64.deb
-	sudo apt --fix-broken install --assume-yes
-	
-	#Install xvfb (Headless browsers need it too.)
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    sudo apt --fix-broken install --assume-yes
+    
+    #Install xvfb (Headless browsers need it too.)
     sudo apt install xvfb --assume-yes
-	
-	
+    
+    
     #dpkg -i google-chrome*.deb
     #apt-get install -f
     #dpkg -i google-chrome*.deb
@@ -281,30 +246,24 @@ install_chromedriver()
     #npm config set strict-ssl false
     #n stable
     #log "Done installing n"
-
     
     #npm install -g chromedriver #> /dev/null
     #ln -s /home/avensia/node_modules/chromedriver/lib/chromedriver/chromedriver /usr/bin
     log "Chromedriver installed and alias created in /usr/bin"
 }
-
 install_phantomjs()
 {
     sudo apt --fix-broken install --assume-yes
-	sudo apt install phantomjs --assume-yes
+    sudo apt install phantomjs --assume-yes
 }
-
-
 if [ ${REMOTE_RANGE} ];
 then
-    S=$(expand_ip_range "192.168.1.100-255")
+    S=$(expand_ip_range "$REMOTE_RANGE")
     REMOTE_HOSTS="${S// /,}"
     log "using remote hosts ${REMOTE_HOSTS}"
 fi
-
 install_java
 install_chromedriver
 install_jmeter
 create_jmeter_startup_script
-
 log "script complete"
