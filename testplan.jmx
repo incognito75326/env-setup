@@ -367,7 +367,7 @@ WDS.sampleResult.sampleEnd();
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">/Users/axelwadensten/Desktop/directnavigation-prod.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="false">
@@ -404,7 +404,7 @@ WDS.sampleResult.sampleEnd();
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">/Users/axelwadensten/Desktop/directnavigation-prod.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
         <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="BeanShell Listener" enabled="false">
@@ -493,7 +493,7 @@ WDS.sampleResult.sampleEnd();
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">/Users/axelwadensten/Desktop/directnavigation-prod.jtl</stringProp>
           <longProp name="interval_grouping">500</longProp>
           <boolProp name="graph_aggregated">false</boolProp>
           <stringProp name="include_sample_labels"></stringProp>
@@ -503,6 +503,43 @@ WDS.sampleResult.sampleEnd();
           <boolProp name="include_checkbox_state">false</boolProp>
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">/Users/axelwadensten/Desktop/directnavigation-prod.jtl</stringProp>
+        </ResultCollector>
         <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Direktnavigering till scorm" enabled="false">
@@ -571,7 +608,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
 import java.time.Duration
 
-var maxWait = 120;
+var maxWait = 300;
 var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait));
 
 //Go to course start page (sample from request until text/button is visible, ie how long between navigation and interactable)
@@ -595,7 +632,7 @@ import org.openqa.selenium.By
 import java.time.Duration
 
 
-var maxWait = 120;
+var maxWait = 300;
 var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait));
 //Click button to go to course page (sample from clicking until start course button visible, ie time between clicking and next page interactable)
 WDS.sampleResult.sampleStart();
@@ -624,7 +661,7 @@ var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait));
 WDS.sampleResult.sampleStart();
 var button = WDS.browser.findElement(By.cssSelector(&apos;#scormviewform &gt; input.btn.btn-primary&apos;));
 button.click();
-java.lang.Thread.sleep(350);//TODO: ACCOUNT FOR IN REPORT
+java.lang.Thread.sleep(500);//TODO: ACCOUNT FOR IN REPORT
 
 //Switch tab
 var handles = WDS.browser.getWindowHandles();
