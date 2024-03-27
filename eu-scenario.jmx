@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="EU-scenario" enabled="false">
@@ -66,7 +68,7 @@
           <stringProp name="WebDriverConfig.custom_capabilites"></stringProp>
         </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
         <hashTree/>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Go to course start page (id=277)" enabled="true">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Go to course start page (id=277)">
           <stringProp name="TestPlan.comments">https://utbildning-extern.stockholm.se/course/view.php?id=277</stringProp>
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
@@ -89,7 +91,7 @@ WDS.sampleResult.sampleEnd();
           <stringProp name="WebDriverSampler.language">groovy</stringProp>
         </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
         <hashTree/>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Second course page" enabled="true">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Second course page">
           <stringProp name="TestPlan.comments">https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=178</stringProp>
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
