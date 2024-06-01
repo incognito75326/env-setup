@@ -305,7 +305,7 @@ var wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(maxWait));
 //Click button to go to course page (sample from clicking until start course button visible, ie time between clicking and next page interactable)
 WDS.sampleResult.sampleStart();
 var button = WDS.browser.findElement(By.cssSelector(&apos;.activityinstance &gt; a&apos;));
-//button.click();
+button.click();
 wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(&apos;#scormviewform &gt; input.btn.btn-primary&apos;)));
 WDS.sampleResult.sampleEnd();
 java.lang.Thread.sleep(800);
