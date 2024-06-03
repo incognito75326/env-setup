@@ -32,13 +32,13 @@
             </elementProp>
             <elementProp name="COURSES" elementType="Argument">
               <stringProp name="Argument.name">COURSES</stringProp>
-              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/course/view.php?id=275,https://utbildning-extern.stockholm.se/course/view.php?id=35</stringProp>
+              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/course/view.php?id=278,https://utbildning-extern.stockholm.se/course/view.php?id=279</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
-              <stringProp name="Argument.desc">3st (small, medium, large)</stringProp>
+              <stringProp name="Argument.desc">2st (small,large)</stringProp>
             </elementProp>
             <elementProp name="COURSES2" elementType="Argument">
               <stringProp name="Argument.name">COURSES2</stringProp>
-              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=177,https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=140</stringProp>
+              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=180,https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=181</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="SELECTORS" elementType="Argument">
@@ -97,7 +97,7 @@
           <stringProp name="WebDriverConfig.custom_capabilites"></stringProp>
         </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
         <hashTree/>
-        <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer">
+        <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
           <stringProp name="ConstantTimer.delay">1000</stringProp>
           <stringProp name="RandomTimer.range">20000</stringProp>
         </UniformRandomTimer>
@@ -123,7 +123,7 @@ java.lang.Thread.sleep(800);
           <stringProp name="WebDriverSampler.language">groovy</stringProp>
         </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
         <hashTree>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
             <stringProp name="scriptLanguage">groovy</stringProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
@@ -140,7 +140,7 @@ Thread.sleep(waitTime)
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to catalog">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to catalog" enabled="true">
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
@@ -180,7 +180,7 @@ java.lang.Thread.sleep(800);
           <stringProp name="WebDriverSampler.language">groovy</stringProp>
         </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
         <hashTree/>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Perform search">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Perform search" enabled="true">
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
@@ -251,7 +251,7 @@ log.info(&quot;currentValue: &quot; + vars.get(&quot;currentValue&quot;));
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to course page - ${course}">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to course page - ${course}" enabled="true">
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
@@ -291,7 +291,7 @@ log.info(&quot;course: &quot; + vars.get(&quot;course&quot;));
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Second course page - ${course}">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Second course page - ${course}" enabled="true">
           <stringProp name="TestPlan.comments">https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=178</stringProp>
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
