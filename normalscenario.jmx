@@ -9,7 +9,7 @@
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
-      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Normalscenario">
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Normalscenario" enabled="false">
         <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
         <stringProp name="TargetLevel">13</stringProp>
@@ -32,13 +32,13 @@
             </elementProp>
             <elementProp name="COURSES" elementType="Argument">
               <stringProp name="Argument.name">COURSES</stringProp>
-              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/course/view.php?id=278,https://utbildning-extern.stockholm.se/course/view.php?id=279</stringProp>
+              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/course/view.php?id=274,https://utbildning-extern.stockholm.se/course/view.php?id=38</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">2st (small,large)</stringProp>
             </elementProp>
             <elementProp name="COURSES2" elementType="Argument">
               <stringProp name="Argument.name">COURSES2</stringProp>
-              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=180,https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=181</stringProp>
+              <stringProp name="Argument.value">https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=174,https://utbildning-extern.stockholm.se/mod/scorm/view.php?id=154</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="SELECTORS" elementType="Argument">
@@ -102,7 +102,7 @@
           <stringProp name="RandomTimer.range">20000</stringProp>
         </UniformRandomTimer>
         <hashTree/>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to start page" enabled="true">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to start page">
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
@@ -140,7 +140,7 @@ Thread.sleep(waitTime)
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
-        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to catalog" enabled="true">
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Navigate to catalog">
           <stringProp name="WebDriverSampler.script">import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.By
